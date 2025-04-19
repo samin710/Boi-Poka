@@ -5,6 +5,7 @@ const Header = () => {
   const lists = (
     <>
       <Link to={"/"}>Home</Link>
+      <Link to={"/readList"}>Listed Books</Link>
       <Link to={"/about"}>About</Link>
     </>
   );

@@ -1,5 +1,7 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router";
+import { addReadList } from "../utilities/readList";
+import { addWishList } from "../utilities/wishtList";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -8,8 +10,13 @@ const BookDetails = () => {
   const data = useLoaderData();
   const bookd = data.find((b) => b.bookId === convertedId);
   //   console.log(bookd);
-  const { bookId, bookName, image, rating, tags, totalPages, author, review } =
-    bookd;
+  const { bookId, bookName, image, review } = bookd;
+  const handleReadList = (id) => {
+    addReadList(id);
+  };
+  const handleWishList = (id)=>{
+    addWishList(id)
+  }
   return (
     <div className="card w-96 shadow-lg mt-10 bg-amber-200">
       <figure className="px-10 pt-10">
@@ -19,8 +26,18 @@ const BookDetails = () => {
         <h2 className="card-title">{bookName}</h2>
         <p>{review}</p>
         <div className="card-actions">
-          <button className="btn btn-primary">Read</button>
-          <button className="btn btn-primary">Wish List</button>
+          <button
+            onClick={() => handleReadList(bookId)}
+            className="btn btn-primary"
+          >
+            Read
+          </button>
+          <button
+            onClick={() => handleWishList(bookId)}
+            className="btn btn-primary"
+          >
+            Wish List
+          </button>
         </div>
       </div>
     </div>
